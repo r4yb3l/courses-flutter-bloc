@@ -22,7 +22,10 @@ class MyBlocProvider extends StatelessWidget {
       ),
       BlocProvider(
         create: (context) => CounterCubit(),
-      )
+      ),
+      BlocProvider(
+        create: (context) => ThemeCubit(),
+      ),
     ], child: const MyApp());
   }
 }
