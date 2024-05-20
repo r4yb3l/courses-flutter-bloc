@@ -20,7 +20,7 @@ class CubitScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){},
-        child: Icon(Icons.refresh) ,
+        child: const Icon(Icons.refresh) ,
       ),
     );
   }
