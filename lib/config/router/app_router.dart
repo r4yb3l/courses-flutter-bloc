@@ -43,4 +43,8 @@ class RouterSimpleCubit extends Cubit<GoRouter> {
   void goHome() {
     state.go('/');
   }
+
+  void goToRoute(String route){
+    state.go(route);
+  }
 }
