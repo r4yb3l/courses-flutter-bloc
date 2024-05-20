@@ -1,7 +1,7 @@
 part of 'theme_cubit.dart';
 
 @immutable
-class ThemeState {
+class ThemeState{
   const ThemeState({
     required this.isDarkMode,
   });
