@@ -1,12 +1,11 @@
+import 'package:blocs_app/config/helpers/random_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/blocs.dart';
 
-
 class CubitScreen extends StatelessWidget {
   const CubitScreen({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +18,10 @@ class CubitScreen extends StatelessWidget {
         child: Text('${usernameCubit.state}'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: const Icon(Icons.refresh) ,
+        onPressed: () {
+          usernameCubit.updateUsername(RandomGenerator.getRandomName());
+        },
+        child: const Icon(Icons.refresh),
       ),
     );
   }
