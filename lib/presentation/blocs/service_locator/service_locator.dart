@@ -6,9 +6,16 @@ GetIt getIt = GetIt.instance;
 
 void serviceLocatorInit() {
   getIt.registerSingleton(UsernameCubit());
+
   getIt.registerSingleton(RouterSimpleCubit());
+
   getIt.registerSingleton(CounterCubit());
+
   getIt.registerSingleton(ThemeCubit());
+
   getIt.registerSingleton(GuestsBloc());
+
   getIt.registerSingleton(PokemonBloc());
+
+  getIt.registerSingleton(GeolocationCubit());
 }
