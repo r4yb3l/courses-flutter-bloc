@@ -1,5 +1,7 @@
+import 'package:blocs_app/config/config.dart';
+import 'package:blocs_app/presentation/blocs/blocs.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GuestsScreen extends StatelessWidget {
   const GuestsScreen({super.key});
@@ -10,21 +12,25 @@ class GuestsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Bloc - GuestBloc'),
       ),
-      body: const _TodoView(),
+      body: _TodoView(),
       floatingActionButton: FloatingActionButton(
-        child: const Icon( Icons.add ),
-        onPressed: () {},
+        child: const Icon(Icons.add),
+        onPressed: () {
+          context
+              .read<GuestsBloc>()
+              .add(AddGuestEvent(name: RandomGenerator.getRandomName()));
+        },
       ),
     );
   }
 }
 
-
 class _TodoView extends StatelessWidget {
-  const _TodoView();
+  _TodoView();
 
   @override
   Widget build(BuildContext context) {
+    final guestBloc = context.watch<GuestsBloc>();
     return Column(
       children: [
         const ListTile(
@@ -33,27 +39,50 @@ class _TodoView extends StatelessWidget {
         ),
 
         SegmentedButton(
-          segments: const[
-            ButtonSegment(value: 'all', icon: Text('Todos')),
-            ButtonSegment(value: 'completed', icon: Text('Invitados')),
-            ButtonSegment(value: 'pending', icon: Text('No invitados')),
-          ], 
-          selected: const <String>{ 'all' },
+          segments: const [
+            ButtonSegment(
+                value: GuestFilter.all,
+                icon: SizedBox(
+                    width: 50,
+                    child: Text(
+                      'Todos',
+                      style: TextStyle(fontSize: 12),
+                    ))),
+            ButtonSegment(
+                value: GuestFilter.invited,
+                icon: SizedBox(
+                    width: 54,
+                    child: Text('Invitados', style: TextStyle(fontSize: 12)))),
+            ButtonSegment(
+                value: GuestFilter.notInvited,
+                icon: SizedBox(
+                    width: 50,
+                    child:
+                        Text('No invitados', style: TextStyle(fontSize: 12)))),
+          ],
+          selected: <GuestFilter>{guestBloc.state.filter},
           onSelectionChanged: (value) {
-            
+            guestBloc.add(SetCustomFilterEvent(guestFilter: value.first));
           },
         ),
-        const SizedBox( height: 5 ),
+        const SizedBox(height: 5),
 
         /// Listado de personas a invitar
         Expanded(
           child: ListView.builder(
+            itemCount: guestBloc.state.howManyFiltered,
             itemBuilder: (context, index) {
+              final guest = guestBloc.state.filteredGuests[index];
+
               return SwitchListTile(
-                title: const Text('Juan carlos'),
-                value: true, 
-                onChanged: ( value ) {}
-              );
+                  title:
+                      Text(guestBloc.state.filteredGuests[index].description),
+                  value: guestBloc.state.filteredGuests[index].done,
+                  onChanged: (value) {
+                    final id = guestBloc.state.filteredGuests[index].id;
+                    guestBloc.add(ModifyGuestInvitationEvent(
+                        guessId: guest.id));
+                  });
             },
           ),
         )

@@ -27,6 +27,9 @@ class MyBlocProvider extends StatelessWidget {
       BlocProvider(
         create: (context) => getIt<CounterCubit>(),
       ),
+      BlocProvider(
+        create: (context) => getIt<GuestsBloc>(),
+      ),
     ], child: const MyApp());
   }
 }
