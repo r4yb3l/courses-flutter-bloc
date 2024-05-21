@@ -7,6 +7,7 @@ class Pokemon extends Equatable {
   final int baseExperience;
   final int weight;
   final String pictureUrl;
+  final String type;
 
   Pokemon(
       {required this.id,
@@ -14,7 +15,8 @@ class Pokemon extends Equatable {
       required this.height,
       required this.baseExperience,
       required this.weight,
-      required this.pictureUrl});
+      required this.pictureUrl,
+      required this.type});
 
   @override
   List<Object?> get props => [id];

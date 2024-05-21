@@ -2,31 +2,22 @@ part of 'pokemon_bloc.dart';
 
 class PokemonState extends Equatable {
   PokemonState({
-    // this.pokemons = const <int, Pokemon>{},
-    this.pokemons = const <int, String>{},
+    this.pokemons = const <int, Pokemon>{},
   });
 
- // Map<int, Pokemon> pokemons;
-Map<int, String> pokemons;
+ Map<int, Pokemon> pokemons;
 
   @override
   List<Object?> get props => [pokemons];
 
-  // PokemonState copyWith({
-  //   Map<int, Pokemon>? pokemons,
-  // }) {
-  //   return PokemonState(
-  //     pokemons: pokemons ?? this.pokemons,
-  //   );
-  // }
-
   PokemonState copyWith({
-    Map<int, String>? pokemons,
+    Map<int, Pokemon>? pokemons,
   }) {
     return PokemonState(
       pokemons: pokemons ?? this.pokemons,
     );
   }
+
 }
 
 final class PokemonInitial extends PokemonState {
