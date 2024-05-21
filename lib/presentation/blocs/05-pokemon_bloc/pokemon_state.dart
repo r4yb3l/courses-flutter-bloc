@@ -10,7 +10,7 @@ class PokemonState extends Equatable {
 Map<int, String> pokemons;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [pokemons];
 
   // PokemonState copyWith({
   //   Map<int, Pokemon>? pokemons,
