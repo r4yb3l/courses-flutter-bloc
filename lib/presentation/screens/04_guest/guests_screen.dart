@@ -1,3 +1,4 @@
+import 'package:blocs_app/config/config.dart';
 import 'package:flutter/material.dart';
 
 
@@ -50,7 +51,7 @@ class _TodoView extends StatelessWidget {
           child: ListView.builder(
             itemBuilder: (context, index) {
               return SwitchListTile(
-                title: const Text('Juan carlos'),
+                title: Text('${RandomGenerator.getRandomName()}'),
                 value: true, 
                 onChanged: ( value ) {}
               );
