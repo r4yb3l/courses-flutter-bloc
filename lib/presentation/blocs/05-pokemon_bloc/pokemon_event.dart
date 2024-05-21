@@ -13,11 +13,21 @@ class PokemonRequested extends PokemonEvent {
   List<Object> get props => [];
 }
 
-class PokemonAdded extends PokemonEvent {
-  final Pokemon pokemon;
+// class PokemonAdded extends PokemonEvent {
+//   final Pokemon pokemon;
+//
+//   PokemonAdded(this.pokemon);
+//
+//   @override
+//   List<Object> get props => [pokemon];
+// }
 
-  PokemonAdded(this.pokemon);
+class PokemonAdded extends PokemonEvent {
+  final int id;
+  final String pokemonName;
+
+  PokemonAdded(this.id, this.pokemonName);
 
   @override
-  List<Object> get props => [pokemon];
+  List<Object> get props => [pokemonName];
 }
