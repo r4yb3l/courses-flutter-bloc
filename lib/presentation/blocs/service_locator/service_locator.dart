@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;
 
-void ServiceLocatorInit() {
+void serviceLocatorInit() {
   getIt.registerSingleton(UsernameCubit());
   getIt.registerSingleton(RouterSimpleCubit());
   getIt.registerSingleton(CounterCubit());
