@@ -68,8 +68,20 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
 
     on<AddGuestEvent>(_addGuestHandler);
 
-    void addGuest(String name) {
-      add(AddGuestEvent(name: name));
+    void _modifyGuestInvitationHandler(
+        ModifyGuestInvitationEvent event, Emitter<GuestsState> emit) {
+      final now = DateTime.now();
+      final guests = state.guests
+          .map(
+            (e) => e.id == event.guessId
+                ? e.copyWith(completedAt: e.completedAt == null ? now : null)
+                : e,
+          )
+          .toList();
+
+      emit(state.copyWith(guests: guests));
     }
+
+    on<ModifyGuestInvitationEvent>(_modifyGuestInvitationHandler);
   }
 }

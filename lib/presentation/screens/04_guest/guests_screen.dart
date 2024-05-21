@@ -72,11 +72,17 @@ class _TodoView extends StatelessWidget {
           child: ListView.builder(
             itemCount: guestBloc.state.howManyFiltered,
             itemBuilder: (context, index) {
+              final guest = guestBloc.state.filteredGuests[index];
+
               return SwitchListTile(
                   title:
                       Text(guestBloc.state.filteredGuests[index].description),
                   value: guestBloc.state.filteredGuests[index].done,
-                  onChanged: (value) {});
+                  onChanged: (value) {
+                    final id = guestBloc.state.filteredGuests[index].id;
+                    guestBloc.add(ModifyGuestInvitationEvent(
+                        guessId: guest.id));
+                  });
             },
           ),
         )

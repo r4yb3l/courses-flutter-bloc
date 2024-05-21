@@ -36,3 +36,15 @@ final class AddGuestEvent extends GuestsEvent {
   @override
   List<Object?> get props => [name];
 }
+
+
+final class ModifyGuestInvitationEvent extends GuestsEvent{
+
+  final String guessId;
+
+  const ModifyGuestInvitationEvent({required this.guessId});
+
+  @override
+  List<Object?> get props => [guessId];
+
+}
