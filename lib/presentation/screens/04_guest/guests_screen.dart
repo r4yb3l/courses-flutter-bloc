@@ -15,7 +15,11 @@ class GuestsScreen extends StatelessWidget {
       body: _TodoView(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          context
+              .read<GuestsBloc>()
+              .add(AddGuestEvent(name: RandomGenerator.getRandomName()));
+        },
       ),
     );
   }
@@ -47,11 +51,14 @@ class _TodoView extends StatelessWidget {
             ButtonSegment(
                 value: GuestFilter.invited,
                 icon: SizedBox(
-                    width: 54, child: Text('Invitados', style: TextStyle(fontSize: 12)))),
+                    width: 54,
+                    child: Text('Invitados', style: TextStyle(fontSize: 12)))),
             ButtonSegment(
                 value: GuestFilter.notInvited,
                 icon: SizedBox(
-                    width: 50, child: Text('No invitados', style: TextStyle(fontSize: 12)))),
+                    width: 50,
+                    child:
+                        Text('No invitados', style: TextStyle(fontSize: 12)))),
           ],
           selected: <GuestFilter>{guestBloc.state.filter},
           onSelectionChanged: (value) {
@@ -66,11 +73,10 @@ class _TodoView extends StatelessWidget {
             itemCount: guestBloc.state.howManyFiltered,
             itemBuilder: (context, index) {
               return SwitchListTile(
-                  title: Text(guestBloc.state.filteredGuests[index].description),
+                  title:
+                      Text(guestBloc.state.filteredGuests[index].description),
                   value: guestBloc.state.filteredGuests[index].done,
-                  onChanged: (value) {
-
-                  });
+                  onChanged: (value) {});
             },
           ),
         )

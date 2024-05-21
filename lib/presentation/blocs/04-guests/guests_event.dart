@@ -27,3 +27,12 @@ final class SetCustomFilterEvent extends GuestsEvent {
   @override
   List<Object?> get props => [];
 }
+
+final class AddGuestEvent extends GuestsEvent {
+  final String name;
+
+  const AddGuestEvent({required this.name});
+
+  @override
+  List<Object?> get props => [name];
+}

@@ -12,24 +12,26 @@ const uuid = Uuid();
 
 class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
   GuestsBloc()
-      : super(GuestsState(
-          guests: [
-            Todo(
-              id: uuid.v4(),
-              description: RandomGenerator.getRandomName(),
-              completedAt: null,
-            ),
-            Todo(
-              id: uuid.v4(),
-              description: RandomGenerator.getRandomName(),
-              completedAt: null,
-            ),
-            Todo(
+      : super(
+          GuestsState(
+            guests: [
+              Todo(
                 id: uuid.v4(),
                 description: RandomGenerator.getRandomName(),
-                completedAt: DateTime.now()),
-          ],
-        )) {
+                completedAt: null,
+              ),
+              Todo(
+                id: uuid.v4(),
+                description: RandomGenerator.getRandomName(),
+                completedAt: null,
+              ),
+              Todo(
+                  id: uuid.v4(),
+                  description: RandomGenerator.getRandomName(),
+                  completedAt: DateTime.now()),
+            ],
+          ),
+        ) {
     on<SetInvitedFilterEvent>(
       (event, emit) {
         emit(state.copyWith(filter: GuestFilter.invited));
@@ -51,5 +53,23 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
     on<SetCustomFilterEvent>((event, emit) {
       emit(state.copyWith(filter: event.guestFilter));
     });
+
+    void _addGuestHandler(AddGuestEvent event, Emitter<GuestsState> emit) {
+      final newPerson = Todo(
+        id: uuid.v4(),
+        description: event.name,
+        completedAt: null,
+      );
+
+      emit(state.copyWith(
+        guests: List.from(state.guests)..add(newPerson),
+      ));
+    }
+
+    on<AddGuestEvent>(_addGuestHandler);
+
+    void addGuest(String name) {
+      add(AddGuestEvent(name: name));
+    }
   }
 }
