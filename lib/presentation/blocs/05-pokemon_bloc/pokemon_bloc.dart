@@ -8,8 +8,8 @@ part 'pokemon_state.dart';
 
 class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
   PokemonBloc() : super(PokemonInitial()) {
-    on<PokemonEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    // on<PokemonEvent>((event, emit) {
+    //
+    // });
   }
 }
