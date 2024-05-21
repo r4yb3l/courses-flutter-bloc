@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
-class PokemonScreen extends StatelessWidget {
+class PokemonScreen extends StatefulWidget {
   const PokemonScreen({super.key});
+
+  @override
+  State<PokemonScreen> createState() => _PokemonScreenState();
+}
+
+class _PokemonScreenState extends State<PokemonScreen> {
+  int pokemonId = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Bloc con Futures'),
+          title: Text('Pokemon Id: ${pokemonId.toString()}'),
         ),
-        body: const Center(
-          child: Text('Fernando Herrera'),
+        body: Center(
+          child: Text('Nombre: Pikachu'),
         ),
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -18,15 +25,24 @@ class PokemonScreen extends StatelessWidget {
             FloatingActionButton(
               heroTag: 'btn-add',
               child: const Icon(Icons.plus_one),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  pokemonId++;
+                });
+              },
             ),
-
             const SizedBox(height: 15),
-
             FloatingActionButton(
               heroTag: 'btn-minus',
               child: const Icon(Icons.exposure_minus_1),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  if (pokemonId <= 0) {
+                    return;
+                  }
+                  pokemonId--;
+                });
+              },
             ),
           ],
         ));
