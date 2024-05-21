@@ -2,7 +2,7 @@ part of 'guests_bloc.dart';
 
 enum GuestFilter { all, invited, notInvited }
 
-sealed class GuestsState extends Equatable {
+class GuestsState extends Equatable {
   final GuestFilter filter;
   final List<Todo> guests;
 
@@ -10,9 +10,17 @@ sealed class GuestsState extends Equatable {
     this.filter = GuestFilter.all,
     this.guests = const [],
   });
-}
 
-final class GuestsInitial extends GuestsState {
+  GuestsState copyWith({
+    GuestFilter? filter,
+    List<Todo>? guests,
+  }) {
+    return GuestsState(
+      filter: filter ?? this.filter,
+      guests: guests ?? this.guests,
+    );
+  }
+
   @override
   List<Object> get props => [filter, guests];
 }
