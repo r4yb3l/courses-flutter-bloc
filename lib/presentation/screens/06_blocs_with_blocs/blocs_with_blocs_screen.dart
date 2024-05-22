@@ -14,9 +14,9 @@ class BlocsWithBlocsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Blocs con Blocs'),
       ),
-      body: Center(
-        child: Text('${location}'),
-      ),
+      body: ListView.builder(itemBuilder: (context, index) {
+        //Poner aqui las ubicaciones en una lista
+      },)
     );
   }
 }

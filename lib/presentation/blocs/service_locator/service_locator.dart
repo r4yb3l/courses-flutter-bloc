@@ -18,4 +18,6 @@ void serviceLocatorInit() {
   getIt.registerSingleton(PokemonBloc());
 
   getIt.registerSingleton(GeolocationCubit()..watchUserLocation());
+
+  getIt.registerSingleton(HistoricLocationsBloc());
 }
