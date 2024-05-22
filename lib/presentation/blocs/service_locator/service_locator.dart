@@ -17,5 +17,5 @@ void serviceLocatorInit() {
 
   getIt.registerSingleton(PokemonBloc());
 
-  getIt.registerSingleton(GeolocationCubit());
+  getIt.registerSingleton(GeolocationCubit()..watchUserLocation());
 }
