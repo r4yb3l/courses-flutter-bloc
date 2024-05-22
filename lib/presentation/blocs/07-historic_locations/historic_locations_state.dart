@@ -9,6 +9,8 @@ class HistoricLocationsState extends Equatable {
     this.locations = const [],
   });
 
+  int get howManyLocationsUntilNow => locations.length;
+
   HistoricLocationsState copyWith({
     List<(double latitude, double longitude)>? locations,
   }) {

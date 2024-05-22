@@ -12,7 +12,6 @@ class HistoricLocationsBloc
   }
 
   void onNewLocation((double latitude, double longitude) location) {
-    print('Inside HistoricLocationsBloc: $location');
     add(NewLocationEvent(location));
   }
 

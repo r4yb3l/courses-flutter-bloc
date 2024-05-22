@@ -1,4 +1,4 @@
-import 'package:blocs_app/presentation/blocs/06-geolocation/geolocation_cubit.dart';
+import 'package:blocs_app/presentation/blocs/blocs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,15 +7,27 @@ class BlocsWithBlocsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final geolocationCubit = context.watch<GeolocationCubit>();
-    final location = geolocationCubit.state.location;
+    final historicLocationBloc = context.watch<HistoricLocationsBloc>();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Blocs con Blocs'),
-      ),
-      body: ListView.builder(itemBuilder: (context, index) {
-        //Poner aqui las ubicaciones en una lista
-      },)
-    );
+        appBar: AppBar(
+          title: Text('Locations: ${historicLocationBloc.state.howManyLocationsUntilNow}'),
+        ),
+        body: ListView.builder(
+          itemCount: historicLocationBloc.state.howManyLocationsUntilNow,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text('${
+              historicLocationBloc.state.locations[index].toString()
+              }'),
+              //TODO here add the country information
+              // subtitle: Text('subtitle'),
+              //TODO here add the flag
+              // trailing: ,
+              subtitle: Text('subtitle'),
+              //TODO here add the flag
+              // trailing: ,
+            );
+          },
+        ));
   }
 }
