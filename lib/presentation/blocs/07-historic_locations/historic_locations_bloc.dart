@@ -11,7 +11,13 @@ class HistoricLocationsBloc
     on<NewLocationEvent>(_onNewLocationHandler);
   }
 
-  void _onNewLocationHandler(NewLocationEvent event, Emitter<HistoricLocationsState> emit) {
+  void onNewLocation((double latitude, double longitude) location) {
+    print('Inside HistoricLocationsBloc: $location');
+    add(NewLocationEvent(location));
+  }
+
+  void _onNewLocationHandler(
+      NewLocationEvent event, Emitter<HistoricLocationsState> emit) {
     emit(state.copyWith(locations: [...state.locations, event.location]));
   }
 }

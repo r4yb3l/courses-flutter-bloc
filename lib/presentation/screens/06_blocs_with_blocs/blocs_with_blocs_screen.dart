@@ -9,7 +9,6 @@ class BlocsWithBlocsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final geolocationCubit = context.watch<GeolocationCubit>();
     final location = geolocationCubit.state.location;
-    print(location);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Blocs con Blocs'),

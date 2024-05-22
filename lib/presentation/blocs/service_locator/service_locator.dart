@@ -1,23 +1,27 @@
-import 'package:blocs_app/config/config.dart';
-import 'package:blocs_app/presentation/blocs/blocs.dart';
-import 'package:get_it/get_it.dart';
+  import 'package:blocs_app/config/config.dart';
+  import 'package:blocs_app/presentation/blocs/blocs.dart';
+  import 'package:get_it/get_it.dart';
 
-GetIt getIt = GetIt.instance;
+  GetIt getIt = GetIt.instance;
 
-void serviceLocatorInit() {
-  getIt.registerSingleton(UsernameCubit());
+  void serviceLocatorInit() {
+    getIt.registerSingleton(UsernameCubit());
 
-  getIt.registerSingleton(RouterSimpleCubit());
+    getIt.registerSingleton(RouterSimpleCubit());
 
-  getIt.registerSingleton(CounterCubit());
+    getIt.registerSingleton(CounterCubit());
 
-  getIt.registerSingleton(ThemeCubit());
+    getIt.registerSingleton(ThemeCubit());
 
-  getIt.registerSingleton(GuestsBloc());
+    getIt.registerSingleton(GuestsBloc());
 
-  getIt.registerSingleton(PokemonBloc());
+    getIt.registerSingleton(PokemonBloc());
 
-  getIt.registerSingleton(GeolocationCubit()..watchUserLocation());
+    getIt.registerSingleton(HistoricLocationsBloc());
 
-  getIt.registerSingleton(HistoricLocationsBloc());
-}
+    getIt.registerSingleton(GeolocationCubit(
+      onNewLocationCallback: getIt.get<HistoricLocationsBloc>().onNewLocation
+    )..watchUserLocation());
+
+
+  }
