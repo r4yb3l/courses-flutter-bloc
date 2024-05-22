@@ -4,15 +4,11 @@ sealed class HistoricLocationsEvent extends Equatable {
   const HistoricLocationsEvent();
 }
 
-class NewLocationEvent extends HistoricLocationsEvent{
-
+class NewLocationEvent extends HistoricLocationsEvent {
   final (double latitude, double longitude) location;
 
   const NewLocationEvent(this.location);
 
   @override
   List<Object> get props => [location];
-
-  @override
-  String toString() => 'NewLocationEvent {location: $location}';
 }
