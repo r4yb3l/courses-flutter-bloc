@@ -8,17 +8,14 @@ class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit({bool darkMode = false}) : super(ThemeState(isDarkMode: darkMode));
 
   void toggleTheme(){
-    print('toggleTheme');
     emit(ThemeState(isDarkMode: !state.isDarkMode));
   }
 
   void SetDarkMode(){
-    print('SetDarkMode');
     emit(const ThemeState(isDarkMode: true));
   }
 
   void SetLightMode(){
-    print('SetLightMode');
     emit(const ThemeState(isDarkMode: false));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:blocs_app/presentation/blocs/blocs.dart';
+import 'package:blocs_app/presentation/blocs/service_locator/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:blocs_app/config/config.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +33,12 @@ class MyBlocProvider extends StatelessWidget {
       ),
       BlocProvider(
         create: (context) => getIt<PokemonBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => getIt<GeolocationCubit>(),
+      ),
+      BlocProvider(
+        create: (context) => getIt<HistoricLocationsBloc>(),
       ),
     ], child: const MyApp());
   }

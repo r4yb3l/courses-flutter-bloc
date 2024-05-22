@@ -30,7 +30,6 @@ class _PokemonScreenState extends State<PokemonScreen> {
               if (snapshot.hasError) {
                 return Center(child: Text('Something went wrong!'));
               }
-              print('${pokemonBloc.state.pokemons[pokemonId]!.pictureUrl}');
               return Column(
                 children: [
                   Image.network(
